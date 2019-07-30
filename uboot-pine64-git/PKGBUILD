@@ -12,7 +12,7 @@ url='http://www.denx.de/wiki/U-Boot/WebHome'
 license=('GPL')
 makedepends=('bc' 'git' 'python' 'swig' 'dtc')
 install=${pkgname}.install
-source=('git+https://github.com/u-boot/u-boot.git#commit=64abfc9b6bb3'
+source=('git+git://git.denx.de/u-boot.git#commit=1692c73ccb'
         'git+https://github.com/ARM-software/arm-trusted-firmware.git#commit=63b9b5425f15'
 	'0001-ATF-set-fno-stack-protector.patch'
         'boot.txt'
@@ -51,7 +51,7 @@ build() {
   make EXTRAVERSION=-${pkgrel}
   cat spl/sunxi-spl.bin u-boot.itb > u-boot-sunxi-with-spl-pine64.bin
 
-  make sopine_baseboard_defconfig
+  make oceanic_5205_5inmfd_defconfig
   echo 'CONFIG_IDENT_STRING=" Arch Linux ARM"' >> .config
   make EXTRAVERSION=-${pkgrel}
   cat spl/sunxi-spl.bin u-boot.itb > u-boot-sunxi-with-spl-sopine.bin
