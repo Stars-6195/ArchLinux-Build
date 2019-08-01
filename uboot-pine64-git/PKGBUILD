@@ -13,7 +13,7 @@ license=('GPL')
 makedepends=('bc' 'git' 'python' 'swig' 'dtc')
 install=${pkgname}.install
 source=('git+git://git.denx.de/u-boot.git#commit=1692c73ccb'
-        'git+https://github.com/ARM-software/arm-trusted-firmware.git#commit=63b9b5425f15'
+        'git+https://github.com/apritzel/arm-trusted-firmware.git#commit=aa75c8da415158a94b82a430b2b40000778e851f'
 	'0001-ATF-set-fno-stack-protector.patch'
         'boot.txt'
         'mkscr')
@@ -54,7 +54,7 @@ build() {
   make oceanic_5205_5inmfd_defconfig
   echo 'CONFIG_IDENT_STRING=" Arch Linux ARM"' >> .config
   make EXTRAVERSION=-${pkgrel}
-  cat spl/sunxi-spl.bin u-boot.itb > u-boot-sunxi-with-spl-sopine.bin
+  cat spl/sunxi-spl.bin u-boot.itb > u-boot-sunxi-with-spl-oceanic_5205.bin
 
   make pinebook_defconfig
   echo 'CONFIG_IDENT_STRING=" Arch Linux ARM"' >> .config

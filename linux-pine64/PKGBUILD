@@ -1,4 +1,4 @@
-buildarch=8
+﻿buildarch=8
 
 _ver=4.20
 
@@ -50,6 +50,7 @@ build() {
   # get kernel version
   make prepare
   make oceanic_5205_defconfig
+
   # load configuration
   # Configure the kernel. Replace the line below with one of your choice.
   #make menuconfig # CLI menu for configuration
