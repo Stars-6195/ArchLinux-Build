@@ -1,10 +1,10 @@
-# U-Boot: Pine64
+﻿# U-Boot: Pine64
 # Maintainer: Kevin Mihelich <kevin@archlinuxarm.org>
 
 buildarch=8
 
 pkgname=uboot-pine64-git
-pkgver=v2019.01.rc3.r35.g64abfc9b6b
+pkgver=v2019.04.r1.g1692c73ccb
 pkgrel=1
 pkgdesc="U-Boot for Pine64"
 arch=('aarch64')
@@ -12,14 +12,18 @@ url='http://www.denx.de/wiki/U-Boot/WebHome'
 license=('GPL')
 makedepends=('bc' 'git' 'python' 'swig' 'dtc')
 install=${pkgname}.install
-source=('git+git://git.denx.de/u-boot.git#commit=1692c73ccb'
+<<<<<<< HEAD
+source=('git+https://git.denx.de/u-boot.git#commit=1692c73ccb39fb790d7ba1a43ca2f14a0f9f1f32'
         'git+https://github.com/apritzel/arm-trusted-firmware.git#commit=aa75c8da415158a94b82a430b2b40000778e851f'
+=======
+source=('git+git://git.denx.de/u-boot.git#commit=1692c73ccb'
+        'git+https://github.com/apritzel/arm-trusted-firmware.git#commit=63b9b5425f15'
 	'0001-ATF-set-fno-stack-protector.patch'
+>>>>>>> 19678f499ea48aa95449f789cd00191ffcb0eec2
         'boot.txt'
         'mkscr')
 md5sums=('SKIP'
          'SKIP'
-         '3213c96ce0713249719dc73d58395620'
          '616ec8961a5304f3e03a4c115a3aed09'
          '021623a04afd29ac3f368977140cfbfd')
 
@@ -32,7 +36,6 @@ prepare() {
   cd u-boot
 
   cd ../arm-trusted-firmware
-  git apply ../0001-ATF-set-fno-stack-protector.patch
 }
 
 build() {
@@ -40,8 +43,9 @@ build() {
 
   cd arm-trusted-firmware
 
-  make PLAT=sun50i_a64 DEBUG=1 bl31
-  cp build/sun50i_a64/debug/bl31.bin ../u-boot
+  make PLAT=sun50iw1p1 DEBUG=1 bl31
+  cp build/sun50iw1p1/debug/bl31.bin ../u-boot
+
 
   cd ../u-boot
 
@@ -51,7 +55,7 @@ build() {
   make EXTRAVERSION=-${pkgrel}
   cat spl/sunxi-spl.bin u-boot.itb > u-boot-sunxi-with-spl-pine64.bin
 
-  make oceanic_5205_5inmfd_defconfig
+  make oceanic_5205_defconfig
   echo 'CONFIG_IDENT_STRING=" Arch Linux ARM"' >> .config
   make EXTRAVERSION=-${pkgrel}
   cat spl/sunxi-spl.bin u-boot.itb > u-boot-sunxi-with-spl-oceanic_5205.bin
@@ -67,7 +71,7 @@ package() {
 
   mkdir -p "${pkgdir}"/boot
 
-  cp u-boot-sunxi-with-spl-{pine64,sopine,pinebook}.bin "${pkgdir}"/boot
+  cp u-boot-sunxi-with-spl-{pine64,oceanic_5205,pinebook}.bin "${pkgdir}"/boot
   cp ../boot.txt ../mkscr "${pkgdir}"/boot
   tools/mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d "${pkgdir}"/boot/boot.txt "${pkgdir}"/boot/boot.scr
 }

@@ -11,7 +11,7 @@ diff --git a/Makefile b/Makefile
 index 74d51804..0af9b350 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -202,7 +202,8 @@ ASFLAGS			+=	$(CPPFLAGS) $(ASFLAGS_$(ARCH))			\
+@@ -200,7 +200,8 @@ ASFLAGS			+=	$(CPPFLAGS) $(ASFLAGS_$(ARCH))			\
  				-Wa,--fatal-warnings
  TF_CFLAGS		+=	$(CPPFLAGS) $(TF_CFLAGS_$(ARCH))		\
  				-ffreestanding -fno-builtin -Wall -std=gnu99	\
