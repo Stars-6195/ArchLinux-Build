@@ -19,8 +19,7 @@ source=('config'
         'kernel_data_key.vbprivk'
         'linux.preset'
         '99-linux.hook'
-	'linux-amarula-5inmfd-dev5.zip'
-        'oceanic_5205')
+	'linux-amarula-5inmfd-dev5.zip')
 
 
 md5sums=('SKIP'
@@ -29,8 +28,7 @@ md5sums=('SKIP'
 	'SKIP'
 	'SKIP'
 	'SKIP'
-	'SKIP'
-        'SKIP')
+	'SKIP')
 
 prepare() {
   cd "${srcdir}/${_srcname}"
@@ -50,8 +48,7 @@ build() {
   
   # get kernel version
   make prepare
- # make ARCH=arm64 oceanic_5205_defconfig
-
+  make -j4 ARCH=arm64
   # load configuration
   # Configure the kernel. Replace the line below with one of your choice.
   #make menuconfig # CLI menu for configuration
@@ -73,8 +70,8 @@ build() {
   #yes "" | make config
 
   # build!
-  unset LDFLAGS
-  make ${MAKEFLAGS} Image Image.gz modules dtbs
+  #unset LDFLAGS
+  make ARCH=arm64 ${MAKEFLAGS} Image.gz modules dtbs
 }
 
 _package() {
