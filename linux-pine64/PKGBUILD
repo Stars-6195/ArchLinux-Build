@@ -50,7 +50,7 @@ build() {
   
   # get kernel version
   make prepare
-  make oceanic_5205_defconfig
+  make ARCH=arm64 oceanic_5205_defconfig
 
   # load configuration
   # Configure the kernel. Replace the line below with one of your choice.

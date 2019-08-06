@@ -12,14 +12,8 @@ url='http://www.denx.de/wiki/U-Boot/WebHome'
 license=('GPL')
 makedepends=('bc' 'git' 'python' 'swig' 'dtc')
 install=${pkgname}.install
-<<<<<<< HEAD
 source=('git+https://git.denx.de/u-boot.git#commit=1692c73ccb39fb790d7ba1a43ca2f14a0f9f1f32'
         'git+https://github.com/apritzel/arm-trusted-firmware.git#commit=aa75c8da415158a94b82a430b2b40000778e851f'
-=======
-source=('git+git://git.denx.de/u-boot.git#commit=1692c73ccb'
-        'git+https://github.com/apritzel/arm-trusted-firmware.git#commit=63b9b5425f15'
-	'0001-ATF-set-fno-stack-protector.patch'
->>>>>>> 19678f499ea48aa95449f789cd00191ffcb0eec2
         'boot.txt'
         'mkscr')
 md5sums=('SKIP'
