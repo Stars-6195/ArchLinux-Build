@@ -3,7 +3,7 @@
 _ver=4.20
 
 pkgbase=linux-pine64
-_srcname=linux-amarula-5inmfd-dev5
+_srcname=linux-amarula-5inmfd-dev6
 _kernelname=${pkgbase#linux}
 _desc="AArch64 multi-platform (release candidate) with Pine64 support"
 pkgver=${_ver}
@@ -19,7 +19,7 @@ source=('config'
         'kernel_data_key.vbprivk'
         'linux.preset'
         '99-linux.hook'
-	'linux-amarula-5inmfd-dev5.zip')
+	'https://github.com/amarula/linux-amarula/archive/5inmfd-dev6.zip')
 
 
 md5sums=('SKIP'
@@ -48,7 +48,7 @@ build() {
   
   # get kernel version
   make prepare
-  make -j4 ARCH=arm64
+  make -j6 ARCH=arm64
   # load configuration
   # Configure the kernel. Replace the line below with one of your choice.
   #make menuconfig # CLI menu for configuration

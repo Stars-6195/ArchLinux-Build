@@ -43,21 +43,10 @@ build() {
 
   cd ../u-boot
 
-  make distclean
-  make pine64_plus_defconfig
-  echo 'CONFIG_IDENT_STRING=" Arch Linux ARM"' >> .config
-  make EXTRAVERSION=-${pkgrel}
-  cat spl/sunxi-spl.bin u-boot.itb > u-boot-sunxi-with-spl-pine64.bin
-
-  make oceanic_5205_defconfig
+  make oceanic_5205_5inmfd_defconfig
   echo 'CONFIG_IDENT_STRING=" Arch Linux ARM"' >> .config
   make EXTRAVERSION=-${pkgrel}
   cat spl/sunxi-spl.bin u-boot.itb > u-boot-sunxi-with-spl-oceanic_5205.bin
-
-  make pinebook_defconfig
-  echo 'CONFIG_IDENT_STRING=" Arch Linux ARM"' >> .config
-  make EXTRAVERSION=-${pkgrel}
-  cat spl/sunxi-spl.bin u-boot.itb > u-boot-sunxi-with-spl-pinebook.bin
 }
 
 package() {
