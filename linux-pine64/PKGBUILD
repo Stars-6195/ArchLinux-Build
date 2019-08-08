@@ -34,7 +34,7 @@ prepare() {
   cd "${srcdir}/${_srcname}"
   #unzip "${srcdir}/${_srcname}.zip"
 
-  cp "${srcdir}/config" > ./.config
+  cat "${srcdir}/config" > ./.config
 
   # add pkgrel to extraversion
   sed -ri "s|^(EXTRAVERSION =)(.*)|\1 \2-${pkgrel}|" Makefile
