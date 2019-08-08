@@ -1,4 +1,4 @@
-﻿buildarch=8
+buildarch=8
 
 _ver=4.20
 
@@ -45,13 +45,14 @@ prepare() {
 
 build() {
   cd "${srcdir}/${_srcname}"
-  
+
   # get kernel version
-  #make prepare
+  # make prepare
+  export ARCH=arm64
   make -j6 ARCH=arm64
   # load configuration
   # Configure the kernel. Replace the line below with one of your choice.
-  #make menuconfig # CLI menu for configuration
+  #make menuconfig ARCH=arm64 # CLI menu for configuration
   #make nconfig # new CLI menu for configuration
   #make xconfig # X-based configuration
   #make oldconfig # using old config from previous kernel version
@@ -87,7 +88,7 @@ _package() {
   cd "${srcdir}/${_srcname}"
 
   KARCH=arm64
-
+  export ARCH=arm64
   # get kernel version
   _kernver="$(make kernelrelease)"
   _basekernel=${_kernver%%-*}
