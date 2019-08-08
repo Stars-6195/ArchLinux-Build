@@ -54,7 +54,7 @@ package() {
 
   mkdir -p "${pkgdir}"/boot
 
-  cp u-boot-sunxi-with-spl-{pine64,oceanic_5205,pinebook}.bin "${pkgdir}"/boot
+  cp u-boot-sunxi-with-spl-oceanic_5205.bin "${pkgdir}"/boot
   cp ../boot.txt ../mkscr "${pkgdir}"/boot
   tools/mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d "${pkgdir}"/boot/boot.txt "${pkgdir}"/boot/boot.scr
 }
