@@ -47,7 +47,7 @@ build() {
   cd "${srcdir}/${_srcname}"
   
   # get kernel version
-  make prepare
+  #make prepare
   make -j6 ARCH=arm64
   # load configuration
   # Configure the kernel. Replace the line below with one of your choice.
